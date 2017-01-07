@@ -1,7 +1,7 @@
 # IoTWork
 
 IoTWork is an home made framework for small devices (and their sensors).
-You can use it in a very simple IoT Network or you can build more complex components at your needs.
+You can use it in to build a IoT Network or simply a Sensors Network
 
 IoTWork project includes three main components:
 
