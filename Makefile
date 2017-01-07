@@ -29,7 +29,7 @@ NETBRIDGE_BRIDGE=${BASE}/IoTWork.NetBridge/Bridge
 
 all: help
 
-build: netbridge-clean netbridge-build reader 
+go: netbridge-clean netbridge-build reader 
 
 clean: netbridge-clean reader-clean
 
@@ -163,7 +163,7 @@ help:
 	@echo "git-prepare               Create IoTWork from git"
 	@echo "git-reset                 Reset IoTWork links and artifcats"
 	@echo ""
-	@echo "build                     Build and Run and Enjoy"
+	@echo "go                        Build and Run and Enjoy"
 	@echo "clean                     Clean all"
 	@echo ""
 	@echo "netbridge                 Clean, Build and Run on NetBridge"
