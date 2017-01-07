@@ -13,4 +13,4 @@ Current version of IoTWork.Reader focuses on the [Raspberry Pi3](https://www.ras
 
 ## The IoTNetwork
 
-![IoTWork.Network](https://github.com/samnium/IoTWork/blob/master/images/IoTWork.Network.png)
+![IoTWork.Network](https://github.com/samnium/IoTWork/blob/master/images/IoTWork.Network.Diagram.png)
