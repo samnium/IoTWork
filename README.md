@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://rawgit.com/samnium/IoTWork/master/images/IoTWorl.Logo.png">
+</p>
+
 # IoTWork
 
 IoTWork is an home made framework for small devices (and their sensors).
