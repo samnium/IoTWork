@@ -27,9 +27,28 @@ NETBRIDGE_BRIDGE=${BASE}/IoTWork.NetBridge/Bridge
 # TARGETS
 #--------------------------------------------------
 
-all: netbridge-clean netbridge-build reader 
+all: help
+
+build: netbridge-clean netbridge-build reader 
 
 clean: netbridge-clean reader-clean
+
+
+#..................................................
+# --> --> --> GIT
+#..................................................
+
+git-clone:
+	-cd ../; git clone https://github.com/samnium/IoTWork.NetBridge.git
+	-cd ../; git clone https://github.com/samnium/IoTWork.Reader.git
+
+git-prepare:
+	test -s IoTWork.Reader || (test -s ../IoTWork.Reader && ln -s ../IoTWork.Reader/)
+	test -s IoTWork.NetBridge || (test -s ../IoTWork.NetBridge && ln -s ../IoTWork.NetBridge/)
+
+git-reset:
+	rm -f IoTWork.Reader
+	rm -f IoTWork.NetBridge
 
 
 #..................................................
@@ -137,9 +156,15 @@ netbridge-clean:
 
 help:
 	@echo ""
-	@echo "all                       Build and Run and Enjoy"
-	@echo ""
+	@echo "all                       Show help"
 	@echo "help                      This help"
+	@echo ""
+	@echo "git-clone                 Clone IoTWork repositories"
+	@echo "git-prepare               Create IoTWork from git"
+	@echo "git-reset                 Reset IoTWork links and artifcats"
+	@echo ""
+	@echo "build                     Build and Run and Enjoy"
+	@echo "clean                     Clean all"
 	@echo ""
 	@echo "netbridge                 Clean, Build and Run on NetBridge"
 	@echo "netbridge-clean           Clean NetBridge modules"
