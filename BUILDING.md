@@ -71,11 +71,11 @@ make go
 
 Then:
 
-# NetBridge is cleaned
-# NetBridge is built and installed
-# Reader is cleaned
-# Reader is build and installed
-# Reader is run
+* NetBridge is cleaned
+* NetBridge is built and installed
+* Reader is cleaned
+* Reader is build and installed
+* Reader is run
 
 You can also using following commands:
 
