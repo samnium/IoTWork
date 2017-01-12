@@ -48,20 +48,20 @@ The Packet's signature is calculated over the Packet using device-key and is sto
 
 The IoTWork.Protocol Header includes following fields:
 
-GUID: a Globally Unique Identifier, it is unique inside the lifecycle of the Device
-VMJ: the Major Version Number of the Protocol
-VMM: the Minor Version Number of the Protocol
-DUA: the Unique Address of the Reader (usually in the form of Network.Region.Ring.Device)
-SUA: the Unique Address of the Sensor inside the Device, this field is used only for payloads for the Data sending
-RGN: the Region who the packet belong
-SAD: the Unique Source Address of the Reader inside the IoTWork.Network 
-TVD: a list of Traversed DUA
-SCD: the Service Code of the Payload
-PCD: the Packet Code of the Payload
-SAT: the Sending date
-SNB: the Unique Sequence Number of the Packet inside the Service Code.
-HMAC1: Signature of the Payload
-HMAC2: Signature of the Packet
+* GUID: a Globally Unique Identifier, it is unique inside the lifecycle of the Device
+* VMJ: the Major Version Number of the Protocol
+* VMM: the Minor Version Number of the Protocol
+* DUA: the Unique Address of the Reader (usually in the form of Network.Region.Ring.Device)
+* SUA: the Unique Address of the Sensor inside the Device, this field is used only for payloads for the Data sending
+* RGN: the Region who the packet belong
+* SAD: the Unique Source Address of the Reader inside the IoTWork.Network 
+* TVD: a list of Traversed DUA
+* SCD: the Service Code of the Payload
+* PCD: the Packet Code of the Payload
+* SAT: the Sending date
+* SNB: the Unique Sequence Number of the Packet inside the Service Code.
+* HMAC1: Signature of the Payload
+* HMAC2: Signature of the Packet
 
 ### The IoTWork.Protocol Payloads
 
