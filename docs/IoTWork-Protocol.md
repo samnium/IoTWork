@@ -63,6 +63,17 @@ The IoTWork.Protocol Header includes following fields:
 
 ### The IoTWork.Protocol Payloads
 
+Management Messages:
+* ManagerStarted = 1,
+* ManagerStopped = 2,
+* Alive = 3,
+* Statistics = 4,
+* UpTime = 5,
+* Errors = 6,
+* Message = 7,
 
+Data Messages:
+* Sample = 100,
+* Measure = 101,
 
 
