@@ -1,14 +1,11 @@
 !#/bin/bash
 
-
-
-
 relname=$(date +%Y%m%d_%H%M%S)
 relpackage=iotreader_$relname.tar.gz
 
 currpath=$(pwd)
 source=/iot/iotreader
-destination=$currpath/releases/iotreader/
+destination=$currpath/releases/iotreader/$1
 
 echo
 echo "Building a IoTWork.Reader release on " $(date)
