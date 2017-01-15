@@ -18,6 +18,7 @@ BINARIES=/iot/iotreader/bin/
 SENSORS=/iot/iotreader/sensors/
 PIPES=/iot/iotreader/pipes/
 MODULES=/iot/iotreader/modules/
+LIBRARIES=/iot/iotreader/lib/
 
 NETBRIDGE=${BASE}/IoTWork.NetBridge
 NETBRIDGE_NET=${BASE}/IoTWork.NetBridge/Net
@@ -51,6 +52,20 @@ git-prepare:
 git-reset:
 	rm -f IoTWork.Reader
 	rm -f IoTWork.NetBridge
+
+#..................................................
+# --> --> --> PACKAGE MANAGER
+#..................................................
+
+package-reader:
+	bash bin/reader_package.sh
+
+package-reader-clean:
+	rm -f ${BINARIES}/*
+	rm -f ${SENSORS}/*
+	rm -f ${PIPES}/*
+	rm -f ${MODULES}/*
+	rm -f ${LIBRARIES}/* 
 
 
 #..................................................
@@ -138,7 +153,7 @@ netbridge-build:
 	mkdir -p ${SOURCES}/drop
 	cp ${NETBRIDGE_NET}/Bridge.Linux/bin/Debug/Bridge.Linux.dll* ${SOURCES}/drop/
 	cp ${NETBRIDGE_NET}/Pi.SHat.RTIMULib/bin/Debug/Pi.SHat.RTIMULib.dll* ${SOURCES}/drop/
-	cd ${NETBRIDGE_BRIDGE}; make; make install
+	cd ${NETBRIDGE_BRIDGE}; make; make install; mkdir -p ${LIBRARIES}; cp -f libnetbridge.so ${LIBRARIES}
 
 netbridge-clean:
 	rm -fr ${NETBRIDGE}/build
@@ -181,6 +196,9 @@ help:
 	@echo "reader-install            Package a Raspberry Pi 3 IoTWork environment (binaries, sensors, pipes and modules)"      
 	@echo "reader-run                Run the packaged reader"
 	@echo ""
+	@echo "package-reader            Create a package release"
+	@echo "package-reader-clean      Clean the three of the reader (but not the configuration)"
+	@echo ""
 
 path:
 	@echo ""
@@ -199,6 +217,7 @@ path:
 	@echo " SENSORS           ${SENSORS}"
 	@echo " PIPES             ${PIPES}"
 	@echo " MODULES           ${MODULES}"
+	@echo " LIBRARIES         ${LIBRARIES}"
 	@echo ""
 	@echo " NETBRIDGE         ${NETBRIDGE}"
 	@echo " NETBRIDGE_NET     ${NETBRIDGE_NET}"
