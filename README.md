@@ -21,7 +21,7 @@ Current version of IoTWork.Reader is focused on the [Raspberry Pi3](https://www.
 
 ## The IoTWork.Network
 
-*Many Readers distributed over a traditional TCP/IP netwkor acquire datas from their Sensors in order to send them to the Central. Readers are partitioned over sets, each sets communicates with a Picker Server. The whole network, composed by Pickers and Readers, is managed by a Network Manager.*
+*Many Readers distributed over a traditional TCP/IP network acquire datas from their Sensors in order to send them to the Central. Readers are partitioned over sets, each sets communicates with a Picker Server. The whole network, composed by Pickers and Readers, is managed by a unique central Network Manager.*
 
 
 ![How IoTWork.Network is made](https://github.com/samnium/IoTWork/blob/master/images/IoTWork.Network.Diagram.1.png)
