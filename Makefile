@@ -86,10 +86,10 @@ central-build:
 	cd ${CENTRAL}; xbuild Contracts/IoTWork.Contracts/IoTWork.Contracts.csproj /p:TargetFrameworkVersion="v4.5"
 
 central-install:
-	mkdir -p ${CENTRAL}/drops/contracts
-	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${CENTRAL}/drops/contracts
-	mkdir -p ${SOURCES}/drops/contracts
-	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${SOURCES}/drops/contracts
+	mkdir -p ${CENTRAL}/Contracts
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${CENTRAL}/Contracts
+	mkdir -p ${SOURCES}/Contracts
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${SOURCES}/Contracts
 
 
 #..................................................
