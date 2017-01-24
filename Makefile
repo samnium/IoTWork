@@ -6,7 +6,6 @@
 BASE=$(shell pwd)
 SOURCES=${BASE}/IoTWork.Reader
 READER=${SOURCES}/IoTWork.IoTReader.net4
-CONTRACTS=${SOURCES}/IoTWork.Contracts.net4
 CONSOLE=${SOURCES}/IoTWork.IoTReader.Console.net4
 SAMPLES=${SOURCES}/IoTWork.Samples.net4
 TRIALS=${SOURCES}/IoTTrials
@@ -24,17 +23,20 @@ NETBRIDGE=${BASE}/IoTWork.NetBridge
 NETBRIDGE_NET=${BASE}/IoTWork.NetBridge/Net
 NETBRIDGE_BRIDGE=${BASE}/IoTWork.NetBridge/Bridge
 	
+CENTRAL=${BASE}/IoTWork.Central
+CONTRACTS=${CENTRAL}/Contracts/IoTWork.Contracts
+
 #--------------------------------------------------
 # TARGETS
 #--------------------------------------------------
 
 all: help
 
-build: netbridge-clean netbridge-build reader-clean reader-build
+build: central-clean central-build netbridge-clean netbridge-build reader-clean reader-build
 
-go: netbridge-clean netbridge-build reader-clean reader-build reader-install reader-run 
+go: central-all netbridge-clean netbridge-build reader-clean reader-build reader-install reader-run 
 
-clean: netbridge-clean reader-clean
+clean: central-clean netbridge-clean reader-clean
 
 
 #..................................................
@@ -44,14 +46,17 @@ clean: netbridge-clean reader-clean
 git-clone:
 	-cd ../; git clone https://github.com/samnium/IoTWork.NetBridge.git
 	-cd ../; git clone https://github.com/samnium/IoTWork.Reader.git
+	-cd ../; git clone https://github.com/samnium/IoTWork.Central.git
 
 git-prepare:
 	test -s IoTWork.Reader || (test -s ../IoTWork.Reader && ln -s ../IoTWork.Reader/)
 	test -s IoTWork.NetBridge || (test -s ../IoTWork.NetBridge && ln -s ../IoTWork.NetBridge/)
+	test -s IoTWork.Central || (test -s ../IoTWork.Central && ln -s ../IoTWork.Central/)
 
 git-reset:
 	rm -f IoTWork.Reader
 	rm -f IoTWork.NetBridge
+	rm -f IoTWork.Central
 
 #..................................................
 # --> --> --> PACKAGE MANAGER
@@ -67,19 +72,37 @@ package-reader-clean:
 	rm -f ${MODULES}/*
 	rm -f ${LIBRARIES}/* 
 
+#..................................................
+# --> --> --> CENTRAL
+#..................................................
+
+central-all: central-clean central-build central-install
+
+central-clean:
+	rm -fr ${CONTRACTS}/bin
+	rm -fr ${CONTRACTS}/obj
+
+central-build:
+	cd ${CENTRAL}; xbuild Contracts/IoTWork.Contracts/IoTWork.Contracts.csproj /p:TargetFrameworkVersion="v4.5"
+
+central-install:
+	mkdir -p ${CENTRAL}/drops/contracts
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${CENTRAL}/drops/contracts
+	mkdir -p ${SOURCES}/drops/contracts
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${SOURCES}/drops/contracts
+
 
 #..................................................
 # --> --> --> READER
 #..................................................
 
-reader: reader-clean reader-build reader-install reader-run
+reader: central-all reader-clean reader-build reader-install reader-run
 
 reader-run:
 	cd ${BINARIES}; ./IoTWork.IoTReader.Console.net4.exe --islinux
 
 reader-build: reader-raspmodules
 	cd ${SOURCES}; xbuild IoTWork.IoTReader.net4/IoTWork.IoTReader.net4.csproj /p:TargetFrameworkVersion="v4.5"
-	cd ${SOURCES}; xbuild IoTWork.Contracts.net4/IoTWork.Contracts.net4.csproj /p:TargetFrameworkVersion="v4.5"
 	cd ${SOURCES}; xbuild IoTWork.IoTReader.Console.net4/IoTWork.IoTReader.Console.net4.csproj /p:TargetFrameworkVersion="v4.5"
 	cd ${SOURCES}; xbuild IoTWork.Samples.net4/IoTWork.Samples.net4.csproj /p:TargetFrameworkVersion="v4.5"
 
@@ -91,11 +114,9 @@ reader-raspmodules:
 
 reader-clean:
 	rm -fr ${READER}/bin
-	rm -fr ${CONTRACTS}/bin
 	rm -fr ${CONSOLE}/bin
 	rm -fr ${SAMPLES}/bin
 	rm -fr ${READER}/obj
-	rm -fr ${CONTRACTS}/obj
 	rm -fr ${CONSOLE}/obj
 	rm -fr ${SAMPLES}/obj
 	rm -fr ${RASPTRIALS}/Pi.SHat.Sensor.Humidity.mono/bin
@@ -118,8 +139,8 @@ reader-install:
 	rm -f ${SENSORS}/*
 	rm -f ${PIPES}/*
 	rm -f ${MODULES}/*
-	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.net4.dll ${SENSORS}
-	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.net4.dll ${PIPES}
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${SENSORS}
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${PIPES}
 	cp -f ${SAMPLES}/bin/Debug/IoTWork.Samples.net4.dll ${SENSORS}
 	cp -f ${SAMPLES}/bin/Debug/IoTWork.Samples.net4.dll ${PIPES}
 	cp -f ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/bin/Debug/Pi.SHat.Sensor.Humidity.mono.dll ${SENSORS}
