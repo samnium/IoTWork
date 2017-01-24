@@ -58,6 +58,11 @@ git-reset:
 	rm -f IoTWork.NetBridge
 	rm -f IoTWork.Central
 
+git-pull:
+	cd IoTWork.Reader; git pull
+	cd IoTWork.NetBridge; git pull
+	cd IoTWork.Central; git pull
+
 #..................................................
 # --> --> --> PACKAGE MANAGER
 #..................................................
