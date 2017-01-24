@@ -64,6 +64,16 @@ git-pull:
 	cd IoTWork.NetBridge; git pull
 	cd IoTWork.Central; git pull
 
+git-diff:
+	cd IoTWork.Reader; git diff
+	cd IoTWork.NetBridge; git diff
+	cd IoTWork.Central; git diff
+
+git-status:
+	cd IoTWork.Reader; git status
+	cd IoTWork.NetBridge; git status
+	cd IoTWork.Central; git status
+
 #..................................................
 # --> --> --> PACKAGE MANAGER
 #..................................................
