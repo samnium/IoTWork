@@ -134,6 +134,11 @@ reader-clean:
 	rm -fr ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/obj
 
 reader-install:
+	mkdir -p ${CENTRAL}\modules
+        cp -f ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/bin/Debug/Pi.SHat.Sensor.Humidity.mono.dll ${CENTRAL}\modules
+        cp -f ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/bin/Debug/Pi.SHat.Sensor.Pressure.mono.dll ${CEBTRAL}\modules
+        cp -f ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/bin/Debug/Pi.SHat.Sensor.Temperature.mono.dll ${CENTRAL}\modules
+        cp -f ${RASPTRIALS}/Pi.SHat.Sensor.Pipe.Dump.mono/bin/Debug/Pi.SHat.Sensor.Pipe.Dump.mono.dll ${CENTRAL}\modules
 	mkdir -p ${IOTBASE}
 	mkdir -p ${IOTREADERBASE}
 	mkdir -p ${BINARIES}
