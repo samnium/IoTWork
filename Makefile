@@ -32,7 +32,7 @@ CONTRACTS=${CENTRAL}/Contracts/IoTWork.Contracts
 
 all: help
 
-build: central-clean central-build netbridge-clean netbridge-build reader-clean reader-build
+build: central-all netbridge-clean netbridge-build reader-clean reader-build
 
 go: central-all netbridge-clean netbridge-build reader-clean reader-build reader-install reader-run 
 
