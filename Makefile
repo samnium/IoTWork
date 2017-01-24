@@ -25,6 +25,7 @@ NETBRIDGE_BRIDGE=${BASE}/IoTWork.NetBridge/Bridge
 	
 CENTRAL=${BASE}/IoTWork.Central
 CONTRACTS=${CENTRAL}/Contracts/IoTWork.Contracts
+PROTOCOLS=${CENTRAL}/Protocols/IoTWork.Protocol
 
 #--------------------------------------------------
 # TARGETS
@@ -89,12 +90,15 @@ central-clean:
 
 central-build:
 	cd ${CENTRAL}; xbuild Contracts/IoTWork.Contracts/IoTWork.Contracts.csproj /p:TargetFrameworkVersion="v4.5"
+	cd ${CENTRAL}; xbuild Protocols/IoTWork.Protocol/IoTWork.Protocol.csproj /p:TargetFrameworkVersion="v4.5"
 
 central-install:
 	mkdir -p ${CENTRAL}/Modules
-	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${CENTRAL}/Modules
 	mkdir -p ${SOURCES}/Contracts
+	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${CENTRAL}/Modules
 	cp -f ${CONTRACTS}/bin/Debug/IoTWork.Contracts.dll ${SOURCES}/Contracts
+	cp -f ${PROTOCOLS}/bin/Debug/IoTWork.Protocol.dll ${CENTRAL}/Modules
+	cp -f ${PROTOCOLS}/bin/Debug/IoTWork.Protocol.dll ${SOURCES}/Contracts
 
 
 #..................................................
